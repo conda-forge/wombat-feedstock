@@ -7,13 +7,13 @@ package:
   version: ${{ version }}
 
 source:
-- url: https://github.com/NLRWindSystems/WOMBAT/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 69ec9c53b6149330bbe3345494d593f549c91a032bc5b4ad2a434040b34d97ff
+- url: https://pypi.org/packages/source/w/wombat/wombat-${{ version }}.tar.gz
+  sha256: 85bcf40e68e86f6de4aac7b93254c84b4fb99bf356493b1678be7b6fef086416
 
 build:
   script: ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation
   noarch: python
-  number: 0
+  number: 1
 
 requirements:
   host:
@@ -41,17 +41,24 @@ requirements:
   - python-dateutil
 
 tests:
+- python:
+    imports:
+      - wombat
+      - wombat.core
+      - wombat.utilities
+      - wombat.windfarm
 - script:
-    - pytest -vvv
+    - pytest tests/ -vvv
   requirements:
       run:
-        - pytest >=7 
+        - pytest >=7
         - pytest-check
         - pytest-cov
         - python ${{ python_min }}.*
   files:
       source:
-        - .
+        - tests/
+        - library/
 
 about:
   homepage: https://github.com/NLRWindSystems/WOMBAT/
