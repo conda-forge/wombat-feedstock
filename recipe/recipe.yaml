@@ -47,6 +47,7 @@ tests:
       - wombat.core
       - wombat.utilities
       - wombat.windfarm
+    pip_check: false  # types-attrs is not available on conda-forge
 - script:
     - pytest tests/ -vvv
   requirements:
