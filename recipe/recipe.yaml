@@ -26,7 +26,7 @@ requirements:
     - attrs >=24.1.0
     - numpy >=1.21
     - scipy >=1.8
-    - pandas <3,>=2
+    - pandas >=2
     - polars >=1.33.1
     - pyarrow >=10
     - jupyterlab >=3
@@ -39,6 +39,8 @@ requirements:
     - types-pyyaml >=6
     - types-python-dateutil >=2.8
     - python-dateutil
+    - polars-lts-cpu cpu
+
 
 tests:
   - python:
