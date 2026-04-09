@@ -1,5 +1,5 @@
 context:
-  version: 0.13.2
+  version: "0.13.3"
   python_min: "3.11"
 
 package:
@@ -7,56 +7,56 @@ package:
   version: ${{ version }}
 
 source:
-- url: https://pypi.org/packages/source/w/wombat/wombat-${{ version }}.tar.gz
-  sha256: 85bcf40e68e86f6de4aac7b93254c84b4fb99bf356493b1678be7b6fef086416
+  - url: https://pypi.org/packages/source/w/wombat/wombat-${{ version }}.tar.gz
+    sha256: 11612969d3688bd352f4861196560deab95f47430a2646051867af9b4883cbb6
 
 build:
   script: ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation
   noarch: python
-  number: 1
+  number: 0
 
 requirements:
   host:
-  - python ${{ python_min }}.*
-  - setuptools
-  - setuptools-scm
-  - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm
+    - pip
   run:
-  - python >=${{ python_min }}
-  - attrs >=24.1.0
-  - numpy >=1.21
-  - scipy >=1.8
-  - pandas <3,>=2
-  - polars >=1.33.1
-  - pyarrow >=10
-  - jupyterlab >=3
-  - simpy >=4.0.1
-  - pyyaml >=6
-  - geopy >=2.3
-  - networkx >=2.7
-  - matplotlib >=3.3
-  - types-typed-ast >=1.5
-  - types-pyyaml >=6
-  - types-python-dateutil >=2.8
-  - python-dateutil
+    - python >=${{ python_min }}
+    - attrs >=24.1.0
+    - numpy >=1.21
+    - scipy >=1.8
+    - pandas <3,>=2
+    - polars >=1.33.1
+    - pyarrow >=10
+    - jupyterlab >=3
+    - simpy >=4.0.1
+    - pyyaml >=6
+    - geopy >=2.3
+    - networkx >=2.7
+    - matplotlib >=3.3
+    - types-typed-ast >=1.5
+    - types-pyyaml >=6
+    - types-python-dateutil >=2.8
+    - python-dateutil
 
 tests:
-- python:
-    imports:
-      - wombat
-      - wombat.core
-      - wombat.utilities
-      - wombat.windfarm
-    pip_check: false  # types-attrs is not available on conda-forge
-- script:
-    - pytest tests/ -vvv
-  requirements:
+  - python:
+      imports:
+        - wombat
+        - wombat.core
+        - wombat.utilities
+        - wombat.windfarm
+      pip_check: false # types-attrs is not available on conda-forge
+  - script:
+      - pytest tests/ -vvv
+    requirements:
       run:
         - pytest >=7
         - pytest-check
         - pytest-cov
         - python ${{ python_min }}.*
-  files:
+    files:
       source:
         - tests/
         - library/
