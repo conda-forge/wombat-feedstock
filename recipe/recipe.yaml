@@ -1,5 +1,5 @@
 context:
-  version: "0.13.3"
+  version: "0.13.4"
   python_min: "3.11"
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/w/wombat/wombat-${{ version }}.tar.gz
-    sha256: 11612969d3688bd352f4861196560deab95f47430a2646051867af9b4883cbb6
+    sha256: cc23f11d327c972e409bc0969a550536165c5187b41ff1dc0f3a166e9816e1cb
 
 build:
   script: ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation
