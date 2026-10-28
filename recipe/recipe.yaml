@@ -1,6 +1,5 @@
 context:
   version: "0.13.5"
-  python_min: "3.11"
 
 package:
   name: wombat
@@ -34,12 +33,11 @@ requirements:
     - pyyaml >=6
     - geopy >=2.3
     - networkx >=2.7
-    - matplotlib >=3.3
+    - matplotlib-base >=3.3
     - types-typed-ast >=1.5
     - types-pyyaml >=6
     - types-python-dateutil >=2.8
     - python-dateutil
-    - polars-lts-cpu
 
 
 tests:
@@ -50,6 +48,9 @@ tests:
         - wombat.utilities
         - wombat.windfarm
       pip_check: false # types-attrs is not available on conda-forge
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
   - script:
       - pytest tests/ -vvv
     requirements:
@@ -67,7 +68,9 @@ about:
   homepage: https://github.com/NLRWindSystems/WOMBAT/
   summary: Windfarm operations and maintenance cost-benefit analysis tool
   license: Apache-2.0
-  license_file: LICENSE
+  license_file:
+    - LICENSE
+    - NOTICE
 
 extra:
   recipe-maintainers:
